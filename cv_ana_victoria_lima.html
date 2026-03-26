@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CV - Ana Victoria Lima</title>
+    <style>
+        @page {
+            size: A4;
+            margin: 0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+            color: #2d2d2d;
+            background: #f0f0f0;
+            line-height: 1.5;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .page {
+            width: 210mm;
+            min-height: 297mm;
+            margin: 20px auto;
+            background: #ffffff;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.15);
+            display: grid;
+            grid-template-columns: 72mm 1fr;
+        }
+
+        @media print {
+            body { background: #fff; }
+            .page {
+                margin: 0;
+                box-shadow: none;
+                min-height: 100vh;
+            }
+        }
+
+        /* ── Left Sidebar ── */
+        .sidebar {
+            background: #1a2744;
+            color: #e8ecf1;
+            padding: 36mm 7mm 20mm 7mm;
+            display: flex;
+            flex-direction: column;
+            gap: 6mm;
+        }
+
+        .sidebar h2 {
+            font-size: 11pt;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #ffffff;
+            border-bottom: 2px solid #3b82f6;
+            padding-bottom: 3mm;
+            margin-bottom: 3mm;
+        }
+
+        .sidebar p,
+        .sidebar li {
+            font-size: 9pt;
+            line-height: 1.6;
+        }
+
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .sidebar ul li {
+            margin-bottom: 2mm;
+            padding-left: 4mm;
+            position: relative;
+        }
+
+        .sidebar ul li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 7px;
+            width: 5px;
+            height: 5px;
+            background: #3b82f6;
+            border-radius: 50%;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 3mm;
+            margin-bottom: 2.5mm;
+            font-size: 9pt;
+            word-break: break-all;
+        }
+
+        .contact-icon {
+            flex-shrink: 0;
+            width: 16px;
+            height: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .contact-icon svg {
+            width: 14px;
+            height: 14px;
+            fill: #3b82f6;
+        }
+
+        .lang-bar-container {
+            margin-bottom: 3mm;
+        }
+
+        .lang-label {
+            font-size: 9pt;
+            margin-bottom: 1mm;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .lang-bar {
+            height: 4px;
+            background: rgba(255,255,255,0.15);
+            border-radius: 2px;
+            overflow: hidden;
+        }
+
+        .lang-bar-fill {
+            height: 100%;
+            background: #3b82f6;
+            border-radius: 2px;
+        }
+
+        /* ── Main Content ── */
+        .main {
+            padding: 12mm 10mm 15mm 10mm;
+        }
+
+        .header {
+            margin-bottom: 7mm;
+        }
+
+        .header h1 {
+            font-size: 26pt;
+            font-weight: 700;
+            color: #1a2744;
+            letter-spacing: 1px;
+            line-height: 1.1;
+        }
+
+        .header .subtitle {
+            font-size: 10pt;
+            color: #6b7280;
+            margin-top: 2mm;
+            letter-spacing: 0.5px;
+        }
+
+        .divider {
+            width: 50px;
+            height: 3px;
+            background: #3b82f6;
+            margin: 5mm 0;
+        }
+
+        /* Profile */
+        .profile-text {
+            font-size: 9.5pt;
+            color: #4b5563;
+            line-height: 1.7;
+            margin-bottom: 6mm;
+        }
+
+        /* Section */
+        .section {
+            margin-bottom: 6mm;
+        }
+
+        .section-title {
+            font-size: 12pt;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #1a2744;
+            border-bottom: 2px solid #e5e7eb;
+            padding-bottom: 2mm;
+            margin-bottom: 5mm;
+        }
+
+        /* Experience Entry */
+        .entry {
+            margin-bottom: 5mm;
+            page-break-inside: avoid;
+        }
+
+        .entry-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            flex-wrap: wrap;
+            margin-bottom: 1mm;
+        }
+
+        .entry-title {
+            font-size: 10.5pt;
+            font-weight: 700;
+            color: #1a2744;
+        }
+
+        .entry-date {
+            font-size: 8.5pt;
+            color: #6b7280;
+            font-style: italic;
+            white-space: nowrap;
+        }
+
+        .entry-company {
+            font-size: 9pt;
+            color: #3b82f6;
+            font-weight: 600;
+            margin-bottom: 1.5mm;
+        }
+
+        .entry ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .entry ul li {
+            font-size: 9pt;
+            color: #4b5563;
+            padding-left: 5mm;
+            position: relative;
+            margin-bottom: 1mm;
+            line-height: 1.5;
+        }
+
+        .entry ul li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 6px;
+            width: 6px;
+            height: 6px;
+            border: 1.5px solid #3b82f6;
+            border-radius: 50%;
+        }
+
+        /* Education */
+        .edu-item {
+            margin-bottom: 3mm;
+        }
+
+        .edu-item .entry-title {
+            font-size: 9.5pt;
+        }
+
+        .edu-item .entry-company {
+            font-size: 8.5pt;
+        }
+    </style>
+</head>
+<body>
+    <div class="page">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <!-- Contact -->
+            <div>
+                <h2>Kontakt</h2>
+                <div class="contact-item">
+                    <span class="contact-icon">
+                        <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5A2.5 2.5 0 1 1 12 6a2.5 2.5 0 0 1 0 5.5z"/></svg>
+                    </span>
+                    <span>Duisburg, DE</span>
+                </div>
+                <div class="contact-item">
+                    <span class="contact-icon">
+                        <svg viewBox="0 0 24 24"><path d="M6.62 10.79a15.053 15.053 0 0 0 6.59 6.59l2.2-2.2a1 1 0 0 1 1.01-.24c1.12.37 2.33.57 3.58.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.46.57 3.58.11.35.03.74-.25 1.02l-2.2 2.19z"/></svg>
+                    </span>
+                    <span>+49 151 52972538</span>
+                </div>
+                <div class="contact-item">
+                    <span class="contact-icon">
+                        <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"/></svg>
+                    </span>
+                    <span>Analimalandarin5<wbr>@gmail.com</span>
+                </div>
+            </div>
+
+            <!-- Languages -->
+            <div>
+                <h2>Sprachen</h2>
+                <div class="lang-bar-container">
+                    <div class="lang-label"><span>Spanisch</span><span>Muttersprache</span></div>
+                    <div class="lang-bar"><div class="lang-bar-fill" style="width:100%"></div></div>
+                </div>
+                <div class="lang-bar-container">
+                    <div class="lang-label"><span>Italienisch</span><span>C1</span></div>
+                    <div class="lang-bar"><div class="lang-bar-fill" style="width:85%"></div></div>
+                </div>
+                <div class="lang-bar-container">
+                    <div class="lang-label"><span>Englisch</span><span>B2</span></div>
+                    <div class="lang-bar"><div class="lang-bar-fill" style="width:70%"></div></div>
+                </div>
+                <div class="lang-bar-container">
+                    <div class="lang-label"><span>Deutsch</span><span>B2</span></div>
+                    <div class="lang-bar"><div class="lang-bar-fill" style="width:65%"></div></div>
+                </div>
+            </div>
+
+            <!-- Skills -->
+            <div>
+                <h2>Kompetenzen</h2>
+                <ul>
+                    <li>Verkaufstalent</li>
+                    <li>Kundenkommunikation</li>
+                    <li>Organisation</li>
+                    <li>Schnelle Auffassungsgabe</li>
+                    <li>Teamarbeit</li>
+                    <li>E-Commerce & Webdesign</li>
+                    <li>Marketing</li>
+                    <li>Data Analytics</li>
+                </ul>
+            </div>
+
+            <!-- Certificates -->
+            <div>
+                <h2>Zertifikate</h2>
+                <ul>
+                    <li>Data Analytics (Google/IBM)</li>
+                    <li>Business Administration</li>
+                </ul>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main">
+            <div class="header">
+                <h1>ANA VICTORIA<br>LIMA</h1>
+                <div class="divider"></div>
+                <p class="subtitle">Service &middot; Verkauf &middot; Management</p>
+            </div>
+
+            <!-- Profile -->
+            <div class="section">
+                <h2 class="section-title">Profil</h2>
+                <p class="profile-text">
+                    Serviceorientierte Mitarbeiterin mit Erfahrung in Gastronomie, Verkauf und Management.
+                    Fokus auf Kundenzufriedenheit und effiziente Teamarbeit.
+                    Verfügbar für Teilzeit (ca. 20 Std./Woche).
+                </p>
+            </div>
+
+            <!-- Experience -->
+            <div class="section">
+                <h2 class="section-title">Berufserfahrung</h2>
+
+                <div class="entry">
+                    <div class="entry-header">
+                        <span class="entry-title">Servicekraft / Kellnerin</span>
+                        <span class="entry-date">Nov. 2024 &ndash; Heute</span>
+                    </div>
+                    <div class="entry-company">Riva Restaurant, Duisburg</div>
+                    <ul>
+                        <li>Gästebetreuung, Service und aktive Kundenbindung</li>
+                        <li>Zuverlässige Teamarbeit in einem dynamischen Umfeld</li>
+                    </ul>
+                </div>
+
+                <div class="entry">
+                    <div class="entry-header">
+                        <span class="entry-title">Verkäuferin</span>
+                        <span class="entry-date">Jan. 2024 &ndash; Juni 2024</span>
+                    </div>
+                    <div class="entry-company">SiSi, Uruguay</div>
+                    <ul>
+                        <li>Top-Performerin (Ø 23.000 &euro; Monatsumsatz)</li>
+                        <li>Fokus auf Verkaufsstrategien und Warenpräsentation</li>
+                    </ul>
+                </div>
+
+                <div class="entry">
+                    <div class="entry-header">
+                        <span class="entry-title">Gründerin &amp; Geschäftsführerin</span>
+                        <span class="entry-date">Jan. 2021 &ndash; Jan. 2024</span>
+                    </div>
+                    <div class="entry-company">Brana (E-Commerce), Uruguay</div>
+                    <ul>
+                        <li>Aufbau und Leitung eines Online-Shops für Mode</li>
+                        <li>Verantwortlich für Marketing, Webdesign und Kundenservice</li>
+                    </ul>
+                </div>
+
+                <div class="entry">
+                    <div class="entry-header">
+                        <span class="entry-title">Junior Verkäuferin</span>
+                        <span class="entry-date">Nov. 2022 &ndash; Juni 2023</span>
+                    </div>
+                    <div class="entry-company">Undici (Premium Fashion), Uruguay</div>
+                    <ul>
+                        <li>Fachkundige Beratung und exzellente Stammkundenpflege</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Education -->
+            <div class="section">
+                <h2 class="section-title">Ausbildung</h2>
+
+                <div class="edu-item">
+                    <div class="entry-header">
+                        <span class="entry-title">B.Sc. in IT</span>
+                        <span class="entry-date">Laufend / Fernstudium</span>
+                    </div>
+                    <div class="entry-company">UTEC, Uruguay</div>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+</html>

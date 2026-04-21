@@ -20,6 +20,9 @@
 
 %include "/home/ldap/&sysuserid./tbkdcol/fidat/MACROLIB/Misdate_guide.sas";
 
+/* heutiges Datum als SAS-Datumswert (numerisch) bereitstellen */
+%let today = %sysfunc(today());
+
 
 /*---------------------------------------------------------------------------*
  * Schritt 1: alle aktuell in State F44 befindlichen Konten

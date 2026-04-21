@@ -1,6 +1,12 @@
 /*****************************************************************************
  * Selektion F44 - Konten ohne Lastschrifteneinzug nach Fälligkeit
  *
+ * Datumslogik:
+ *   &datmisext.  = MIS-Stichtag (letzter Arbeitstag, NICHT heute)
+ *                  -> wird für MIS_DATE-Filter verwendet
+ *   &today.      = tatsächlicher heutiger Tag
+ *                  -> wird für "4 Tage nach Fälligkeitsdatum" verwendet
+ *
  * Ablauf in einfachen Schritten:
  *   1) F44-Konten holen                (aus vedw.DRI_276_ED_MISEXT_C)
  *   2) Fälligkeit/Rückstand dranhängen (aus vedw.Dri_276_ed_als_loan_nc)
@@ -23,7 +29,7 @@ proc sql;
     select  V_CLE_ACCT_NBR        as A_ACC,
             V_CLE_CACS_STATE_CODE as C_STATE
     from    vedw.DRI_276_ED_MISEXT_C
-    where   MIS_DATE              = &today.
+    where   MIS_DATE              = "&datmisext."d
       and   V_CLE_CACS_STATE_CODE = 'F44';
 quit;
 
@@ -43,7 +49,7 @@ proc sql;
     from    work.s1_f44_konten            k
     inner join vedw.Dri_276_ed_als_loan_nc l
       on    l.V_ALSLN_ORIG_ACCT_NBR = k.A_ACC
-     and    l.MIS_DATE              = &today.
+     and    l.MIS_DATE              = "&datmisext."d
     where   (&today. - l.D_ALSLN_RT_NXT_DUE_DATE) >= 4
       and   l.N_ALSLN_DQ_TOT_AMT_PDUE > 0;
 quit;

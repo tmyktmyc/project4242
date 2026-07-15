@@ -3,6 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#2c6ab1">
 <title>A Door in the Sky</title>
 <style>
   html, body {
@@ -14,6 +15,7 @@
     height: 100dvh;
     overflow: hidden;
     background: #7aa9dc;
+    -webkit-tap-highlight-color: transparent;
   }
 
   /* Clear midday sky: saturated zenith fading into pale, faintly warm horizon haze,
@@ -36,20 +38,28 @@
         #ebf2f6 100%);
   }
 
-  .clouds {
-    position: fixed;
-    inset: 0;
-    width: 100%;
-    height: 100%;
+  /* Each cloud is its own SVG, positioned and sized relative to the viewport so
+     the composition holds on portrait phones as well as wide screens. Drift is
+     animated on the outer element, so the expensive filters rasterize once. */
+  .cloud {
+    position: absolute;
+    pointer-events: none;
+  }
+  .cloud-a { left: 6%;  top: 10%; width: clamp(200px, 34vw, 480px); animation: drift-a 280s ease-in-out infinite alternate; }
+  .cloud-b { right: 7%; top: 30%; width: clamp(150px, 24vw, 340px); animation: drift-b 340s ease-in-out infinite alternate; }
+  .cloud-c { left: 52%; top: 7%;  width: clamp(260px, 44vw, 640px); animation: drift-c 300s ease-in-out infinite alternate; }
+  .cloud-d { left: -6%; top: 68%; width: clamp(240px, 42vw, 620px); animation: drift-b 380s ease-in-out infinite alternate; }
+
+  @media (max-width: 600px) {
+    .cloud-a { top: 8%; }
+    .cloud-b { right: 4%; top: 27%; }
+    .cloud-c { left: 36%; top: 4%; }
+    .cloud-d { top: 72%; left: -14%; }
   }
 
-  .drift-a { animation: drift-a 260s ease-in-out infinite alternate; }
-  .drift-b { animation: drift-b 340s ease-in-out infinite alternate; }
-  .drift-c { animation: drift-c 300s ease-in-out infinite alternate; }
-
-  @keyframes drift-a { from { transform: translateX(-18px); } to { transform: translateX(30px); } }
-  @keyframes drift-b { from { transform: translateX(22px); }  to { transform: translateX(-26px); } }
-  @keyframes drift-c { from { transform: translateX(-12px); } to { transform: translateX(20px); } }
+  @keyframes drift-a { from { transform: translateX(-16px); } to { transform: translateX(26px); } }
+  @keyframes drift-b { from { transform: translateX(20px); }  to { transform: translateX(-24px); } }
+  @keyframes drift-c { from { transform: translateX(-12px); } to { transform: translateX(22px); } }
 
   /* Fine grain breaks up gradient banding so the sky reads as air, not print. */
   .grain {
@@ -63,10 +73,11 @@
 
   .portal {
     position: absolute;
-    left: 61%;
-    top: 37%;
+    left: 50%;
+    top: 44%;
+    transform: translate(-50%, -50%);
     width: 11px;
-    height: 24px;
+    height: 28px;
     background: linear-gradient(to bottom, #ffffff, #f7f4e9);
     border-radius: 1px;
     cursor: pointer;
@@ -79,18 +90,18 @@
   .portal::before {
     content: "";
     position: absolute;
-    inset: -36px -32px;
+    inset: -38px -34px;
     background: radial-gradient(closest-side, rgba(255, 255, 248, 0.3), rgba(255, 255, 248, 0) 72%);
     animation: breathe 9s ease-in-out infinite;
     transition: opacity 1.2s ease;
   }
-  .portal:hover {
+  .portal:hover, .portal:active {
     box-shadow:
       0 0 3px rgba(255, 255, 252, 1),
       0 0 12px 3px rgba(255, 254, 244, 0.7),
       0 0 34px 12px rgba(245, 250, 255, 0.38);
   }
-  .portal:hover::before {
+  .portal:hover::before, .portal:active::before {
     opacity: 1;
   }
 
@@ -100,41 +111,93 @@
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .drift-a, .drift-b, .drift-c, .portal::before {
+    .cloud, .portal::before {
       animation: none;
     }
   }
 </style>
 </head>
 <body>
-  <main class="sky" role="img" aria-label="A clear blue sky with a few faint wisps of cloud. High up, a very small white rectangle glows softly, like a door standing open in the sky.">
-    <svg class="clouds" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+  <main class="sky" role="img" aria-label="A clear blue sky with a few soft clouds. In the middle of the sky, a very small white rectangle glows gently, like a door standing open in the blue.">
+
+    <!-- Fair-weather cumulus: a cluster of puffs over a faint blue-grey base,
+         drawn twice — a blurred halo pass underneath and a crisper pass on top —
+         then roughened with turbulence displacement so the edges billow. -->
+    <svg class="cloud cloud-a" viewBox="0 0 460 240" aria-hidden="true">
       <defs>
-        <!-- Horizontally-stretched turbulence smears the ellipses into cirrus wisps.
-             Filter regions are oversized so the displacement isn't clipped. -->
-        <filter id="cirrus-a" x="-40%" y="-900%" width="180%" height="1900%">
-          <feTurbulence type="fractalNoise" baseFrequency="0.008 0.042" numOctaves="5" seed="11" result="t"/>
-          <feDisplacementMap in="SourceGraphic" in2="t" scale="80"/>
-          <feGaussianBlur stdDeviation="5.5"/>
+        <g id="a-mass">
+          <ellipse cx="225" cy="158" rx="155" ry="24" fill="#d7e6f4" opacity="0.6"/>
+          <ellipse cx="150" cy="132" rx="64" ry="34" fill="#ffffff"/>
+          <ellipse cx="215" cy="110" rx="58" ry="46" fill="#ffffff"/>
+          <ellipse cx="280" cy="124" rx="56" ry="36" fill="#ffffff"/>
+          <ellipse cx="330" cy="142" rx="44" ry="22" fill="#ffffff"/>
+          <ellipse cx="235" cy="148" rx="125" ry="24" fill="#ffffff"/>
+        </g>
+        <filter id="a-crisp" x="-25%" y="-35%" width="150%" height="190%">
+          <feTurbulence type="fractalNoise" baseFrequency="0.021 0.027" numOctaves="4" seed="8" result="t"/>
+          <feDisplacementMap in="SourceGraphic" in2="t" scale="32"/>
+          <feGaussianBlur stdDeviation="2.5"/>
         </filter>
-        <filter id="cirrus-b" x="-40%" y="-900%" width="180%" height="1900%">
-          <feTurbulence type="fractalNoise" baseFrequency="0.010 0.034" numOctaves="5" seed="47" result="t"/>
-          <feDisplacementMap in="SourceGraphic" in2="t" scale="90"/>
-          <feGaussianBlur stdDeviation="6"/>
+        <filter id="a-soft" x="-25%" y="-35%" width="150%" height="190%">
+          <feTurbulence type="fractalNoise" baseFrequency="0.021 0.027" numOctaves="4" seed="8" result="t"/>
+          <feDisplacementMap in="SourceGraphic" in2="t" scale="32"/>
+          <feGaussianBlur stdDeviation="10"/>
         </filter>
       </defs>
-      <g class="drift-a">
-        <ellipse cx="420" cy="185" rx="280" ry="12" fill="#ffffff" opacity="0.32" filter="url(#cirrus-a)"/>
-      </g>
-      <g class="drift-b">
-        <ellipse cx="1270" cy="130" rx="160" ry="8" fill="#ffffff" opacity="0.22" filter="url(#cirrus-b)"/>
-        <ellipse cx="1330" cy="450" rx="200" ry="10" fill="#ffffff" opacity="0.26" filter="url(#cirrus-a)"/>
-      </g>
-      <g class="drift-c">
-        <ellipse cx="310" cy="645" rx="330" ry="15" fill="#ffffff" opacity="0.18" filter="url(#cirrus-b)"/>
-      </g>
+      <use href="#a-mass" filter="url(#a-soft)" opacity="0.55"/>
+      <use href="#a-mass" filter="url(#a-crisp)" opacity="0.96"/>
     </svg>
-    <div class="portal" title=""></div>
+
+    <svg class="cloud cloud-b" viewBox="0 0 360 200" aria-hidden="true">
+      <defs>
+        <g id="b-mass">
+          <ellipse cx="180" cy="128" rx="110" ry="18" fill="#d7e6f4" opacity="0.55"/>
+          <ellipse cx="125" cy="104" rx="48" ry="26" fill="#ffffff"/>
+          <ellipse cx="185" cy="90"  rx="46" ry="34" fill="#ffffff"/>
+          <ellipse cx="240" cy="106" rx="42" ry="24" fill="#ffffff"/>
+          <ellipse cx="182" cy="118" rx="92" ry="18" fill="#ffffff"/>
+        </g>
+        <filter id="b-crisp" x="-25%" y="-35%" width="150%" height="190%">
+          <feTurbulence type="fractalNoise" baseFrequency="0.024 0.03" numOctaves="4" seed="23" result="t"/>
+          <feDisplacementMap in="SourceGraphic" in2="t" scale="30"/>
+          <feGaussianBlur stdDeviation="2.2"/>
+        </filter>
+        <filter id="b-soft" x="-25%" y="-35%" width="150%" height="190%">
+          <feTurbulence type="fractalNoise" baseFrequency="0.024 0.03" numOctaves="4" seed="23" result="t"/>
+          <feDisplacementMap in="SourceGraphic" in2="t" scale="30"/>
+          <feGaussianBlur stdDeviation="9"/>
+        </filter>
+      </defs>
+      <use href="#b-mass" filter="url(#b-soft)" opacity="0.5"/>
+      <use href="#b-mass" filter="url(#b-crisp)" opacity="0.92"/>
+    </svg>
+
+    <!-- High cirrus: ellipses smeared sideways through stretched turbulence.
+         Oversized filter regions keep the displacement from clipping. -->
+    <svg class="cloud cloud-c" viewBox="0 0 600 160" aria-hidden="true">
+      <defs>
+        <filter id="c-smear" x="-30%" y="-700%" width="160%" height="1500%">
+          <feTurbulence type="fractalNoise" baseFrequency="0.007 0.045" numOctaves="5" seed="11" result="t"/>
+          <feDisplacementMap in="SourceGraphic" in2="t" scale="65"/>
+          <feGaussianBlur stdDeviation="4.5"/>
+        </filter>
+      </defs>
+      <ellipse cx="300" cy="70"  rx="250" ry="9" fill="#ffffff" opacity="0.5"  filter="url(#c-smear)"/>
+      <ellipse cx="345" cy="106" rx="175" ry="6" fill="#ffffff" opacity="0.34" filter="url(#c-smear)"/>
+    </svg>
+
+    <svg class="cloud cloud-d" viewBox="0 0 600 140" aria-hidden="true">
+      <defs>
+        <filter id="d-smear" x="-30%" y="-700%" width="160%" height="1500%">
+          <feTurbulence type="fractalNoise" baseFrequency="0.009 0.036" numOctaves="5" seed="47" result="t"/>
+          <feDisplacementMap in="SourceGraphic" in2="t" scale="72"/>
+          <feGaussianBlur stdDeviation="5.5"/>
+        </filter>
+      </defs>
+      <ellipse cx="300" cy="70" rx="260" ry="8" fill="#ffffff" opacity="0.34" filter="url(#d-smear)"/>
+    </svg>
+
+    <div class="portal"></div>
     <div class="grain"></div>
   </main>
 </body>

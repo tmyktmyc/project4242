@@ -178,6 +178,47 @@ This niche combines two models from above — **occasion ownership** (the get-we
 
 ---
 
+## Distribution playbook: Punta del Este, Uruguay
+
+The founder never drives. Four routes make that possible, and successful cookie businesses combine them.
+
+### Route 1 — Delivery apps bring their own riders (local, on-demand)
+
+- **PedidosYa** operates directly in Punta del Este and Maldonado (restaurants, markets, shops). Born in Montevideo, now Delivery Hero-owned, and by far the dominant app in Uruguay. List the cookie kitchen as a store: they bring the demand *and* the fleet, in exchange for commission.
+- **Rappi** also covers Montevideo and Punta del Este — worth listing as a second channel. Uber Eats exists in Uruguay but is marginal (~11k active users).
+- **PedidosYa Envíos** is the key unlock for orders taken via Instagram/WhatsApp or a web store: a per-delivery courier service for businesses — a rider picks up at the kitchen (immediate ~15 min, or scheduled 2-hour slots), delivers up to ~10 km, 8:00–22:00, insured, real-time tracked, **no fixed fees and no minimum volume**. It integrates with e-commerce platforms (e.g., Tiendanube). This turns "driving around all day" into a line-item cost per order.
+
+### Route 2 — Customers come to you (batch & pickup)
+
+- **Click-and-collect windows:** publish 2–3 weekly pickup slots; bake to order (the standard home-baker cadence, and it caps waste).
+- **Ferias:** the Intendencia de Maldonado runs artisan/entrepreneur fairs — Feria de Plaza Artigas in Punta del Este (with open seasonal calls for new vendors) and the Mercado Central feria de artesanos y emprendedores — one stand, high foot traffic, doubles as marketing. Contact: feriartesanal@maldonado.gub.uy / 4244 4262.
+
+### Route 3 — One B2B drop-off feeds many customers (the highest-leverage route in Punta)
+
+- **Vacation-rental welcome boxes.** Punta del Este is a rental-property town; property managers handling dozens of homes buy welcome amenities in bulk. One weekly delivery to the agency = cookies in 50 rentals. Recurring, invoiced, zero last-mile.
+- **Hotels, cafés, paradores:** sealed, labeled cookies on consignment or wholesale; hotel minibars and breakfast buffets in season.
+- **Tienda Inglesa** and local gourmet shops once volumes justify it (requires product registration — see below).
+- **Wedding/event planners:** Punta is a destination-event market in season; favor boxes and dessert tables are large single orders to a single address.
+
+### Route 4 — Ship parcels nationwide (the DTC/drops/gifting model)
+
+- **DAC** (national private courier since 1969) covers every corner of Uruguay, does pickups, serves e-commerce, and partners with DHL for international. **UES** and **Correo Uruguayo** are the alternatives. Montevideo — half the country's population — is 2 hours away.
+- **Mercado Libre + Mercado Envíos:** now fully operational in Uruguay — print the pre-paid label, hand the parcel over, flat nationwide pricing by weight, and Mercado Libre boosts listings that use it. The lowest-friction way to sell countrywide.
+- **Own store:** Tiendanube (dominant LatAm small-commerce platform) integrating PedidosYa Envíos for local and DAC for national.
+- Sealed, shelf-stable recipes (the Last Crumb/CPG lesson) are what make this route work — and they're the same spec hospital gifting requires.
+
+### Season-proofing (the Punta-specific problem)
+
+High season (Dec–Feb) multiplies the local population with Argentine and Brazilian tourists: lean on Routes 1–3 (apps, ferias, hotels, rentals). Off-season, shift weight to Route 4 — nationwide shipping, corporate gifting, and the get-well/dietary gifting niche above, none of which care that the peninsula is empty.
+
+### Formalization checklist (Uruguay)
+
+1. **Monotributo** — the simplified regime for small businesses: one monthly payment covering both DGI (taxes) and BPS (social security), explicitly designed for small-scale food retail; online registration, and it includes health coverage for the owner.
+2. **Carné de manipulación de alimentos** (food-handler card) for anyone baking.
+3. **Habilitación bromatológica** from the Intendencia de Maldonado for the kitchen, plus **registration of each product** — required before selling through shops, hotels, or apps. Granted for 5 years; typical requirements are RUT, BPS/DGI certificates, food-handler card, pest control, and fire-department clearance. Requirements vary by department, so confirm directly with Maldonado's bromatología office.
+
+---
+
 ## One legal warning: copy the model, not the brand
 
 Business *models* — rotating menus, franchising, drops, late-night delivery — are not protectable and are free to copy. Brand *identity* is protectable: Crumbl has sued look-alike competitors (including Dirty Dough and Crave) over trade dress — packaging, box design, presentation style. Use these companies as blueprints for mechanics and unit economics, but build distinct names, colors, packaging, and recipes.
@@ -235,3 +276,19 @@ Business *models* — rotating menus, franchising, drops, late-night delivery �
 - [Kidney-friendly cookies: what to look for (Kidney Foodie)](https://kidneyfoodie.com/kidney-friendly-cookies/)
 - [Renal-friendly grab-and-go snacks (Magic Kitchen)](https://www.magickitchen.com/info/10-Grab-and-Go-Renal-Friendly-Snacks.html)
 - [Individually wrapped medical-themed cookie tins (Apple Cookie & Chocolate Co.)](https://www.applecookies.com/emergency-medical-service/medical-cookie-gift-tin/)
+
+### Distribution — Punta del Este / Uruguay
+
+- [PedidosYa — delivery in Punta del Este](https://www.pedidosya.com.uy/restaurantes/punta-del-este)
+- [PedidosYa Envíos — last-mile courier for businesses](https://envios.pedidosya.com.uy/)
+- [PedidosYa Envíos launch coverage (InfoNegocios)](https://infonegocios.biz/nota-principal/un-nuevo-courier-entra-al-mercado-sale-a-la-calle-pedidosya-envios)
+- [Rappi Uruguay](https://www.rappi.com.uy/)
+- [Uruguay food-delivery app rankings Q2 2025 (Sensor Tower)](https://sensortower.com/blog/2025-q2-unified-top-5-food%20delivery%20services-units-uy-63da96fbe1714cfff1c1e5a1)
+- [DAC — national courier & logistics](https://www.dac.com.uy/)
+- [Mercado Envíos Uruguay — how it works](https://www.mercadolibre.com.uy/institucional/hacemos/que-es-mercado-envios)
+- [Mercado Envíos seller guide](https://vendedores.mercadolibre.com.uy/nota/como-funcionan-los-envios-de-mercado-libre)
+- [Feria de Plaza Artigas — vendor call (Intendencia Maldonado)](https://www.maldonado.gub.uy/noticias/llamado-nuevos-artesanos-temporada-punta-del-este)
+- [Mercado Central feria de artesanos y emprendedores (Intendencia Maldonado)](https://www.maldonado.gub.uy/actividades/mercado-central-feria-artesanos-emprendedores)
+- [Habilitación bromatológica para empresas alimentarias (Uruguay Emprendedor)](https://www.uruguayemprendedor.uy/tramite/habilitacion-bromatologica-para-empresas-alimentarias/)
+- [Monotributo guide for entrepreneurs (Memory)](https://memory.com.uy/blog-general/guia-monotributo-en-uruguay/)
+- [Monotributo registration (BPS)](https://www.bps.gub.uy/11337/inscribir-monotributo-unipersonal-dentro-del-mes-en-curso.html)

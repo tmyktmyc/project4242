@@ -144,6 +144,40 @@ South Korean pastry chef Kim Na-ra (Mond Cookie, Gimpo) fused the viral Dubai-ch
 
 ---
 
+## Niche spotlight: hospital-friendly cookies & "people who can't eat normal cookies anymore"
+
+This niche combines two models from above — **occasion ownership** (the get-well visit, like Insomnia owns late night) and **dietary-niche CPG** (like Partake owns allergen-free) — and it is only partially claimed.
+
+### The rules of giving food in hospitals (what makes a cookie "hospital-appropriate")
+
+1. **Always ask the nurses' station first.** Patients may be NPO (nothing by mouth before surgery), on fluid/texture restrictions, or on condition-specific diets. This is the non-negotiable step.
+2. **Commercially sealed beats home-baked.** For immunocompromised/neutropenic patients (chemo, transplant), hospitals commonly steer toward **commercially packaged food** to minimize infection risk — home-baked goods are often turned away. Individually wrapped, shelf-stable, sealed portions are the gold standard.
+3. **Label everything.** Full ingredient/allergen lists and per-cookie nutrition (especially **carbs per cookie**, so diabetic patients can dose insulin) make a cookie giftable in a medical setting.
+4. **Soft wins.** Post-surgery patients, chemo patients with mouth sores, and elderly patients all favor soft-baked textures.
+
+### Who already serves this market, by condition
+
+| Condition / need | What works | Who's doing it |
+|---|---|---|
+| Get-well gifting (general) | Comfort-food gift box delivered to home or hospital, personalized note | **Spoonful of Comfort** (US) — soup + rolls + cookies packages, plus a corporate gifting arm and healthcare-worker appreciation boxes |
+| Diabetes / low-sugar | Monk fruit & allulose sweeteners, 0–3g sugar, per-cookie carb counts | **ChipMonk Baking** (Houston) — founded after co-founder's Type 2 diabetes diagnosis; DTC from a dedicated gluten-free bakery |
+| Celiac / food allergies | Top-9/14 allergen-free, sealed singles | **Partake**, **Sweet Loren's** (profiled above) |
+| Chewing/swallowing difficulty (dysphagia — stroke, ALS, elderly, post-surgery) | IDDSI-compliant "transitional foods" that melt with saliva | **Savorease** "Crispy Melts" (US) — first meltable solid snack, sold into hospitals as floor stock and therapy tools; also Blossom Foods, Hormel Health Labs |
+| Elderly care (mass market) | Texture-graded foods under Japan's 4-level **Universal Design Food (UDF)** standard ("easy to chew" → "no chewing required") | Kewpie's *Yasashii Kondate* line and many others — Japan is the world's most mature soft-food market and the template to study |
+| Chemo taste changes & nausea | **Real ginger** (clinically shown to ease chemo nausea — flavoring alone doesn't count), lemon, mint, cinnamon, maple, almond — flavors that cut through "chemo mouth" (50–75% of chemo patients get taste changes); lemon + maple counters metallic taste | **Nobody owns this.** Cancer centers (Dana-Farber, City of Hope, Fred Hutch) publish the guidance; no branded "chemo-friendly cookie" exists at scale |
+| Kidney disease / dialysis | Low sodium, low potassium, low phosphorus — plain shortbread/wafer-style cookies qualify; chocolate and nuts generally don't | **Nobody owns this** either — dietitian blogs and recipe sites fill the void |
+| Hospital staff gifting | Individually wrapped, medical-themed tins | Apple Cookie & Chocolate Co.; generic wholesale (Otis Spunkmeyer/Famous Amos snack packs) stock hospital gift shops |
+
+### The opportunity, if you want to build here
+
+- **The two open lanes are chemo-friendly and renal-friendly treats.** Both have desperate, underserved, easily-reached audiences (oncology and dialysis centers are dense, recurring communities), clear evidence-based product specs (real ginger/lemon/soft for chemo; low Na/K/phos for renal), and zero dominant brands.
+- **The wedge product:** a "hospital-safe" gift box — factory-sealed, individually wrapped, dietitian-reviewed cookies where the buyer picks the recipient's restriction (diabetic / gluten-free / renal / soft-texture / chemo-comfort) at checkout. Nobody offers this today; Spoonful of Comfort proves the gifting occasion pays, Partake proves the dietary niche pays.
+- **Distribution stack:** DTC gifting site (people buy from home to send to hospitals) → hospital gift shop wholesale (individually-wrapped is already the standard there) → corporate HR accounts (get-well/sympathy gifting is a line item) → oncology/dialysis clinic partnerships.
+- **Trust is the moat:** dietitian endorsement, per-cookie nutrition panels, sealed single-serves, and testimonials from patient communities matter more here than in any other cookie segment — and once earned, they're hard for a generic bakery to copy.
+- **Caveat to design around:** individual patients' restrictions vary and can be strict — every product page and box should say "check with the care team," which doubles as a credibility signal.
+
+---
+
 ## One legal warning: copy the model, not the brand
 
 Business *models* — rotating menus, franchising, drops, late-night delivery — are not protectable and are free to copy. Brand *identity* is protectable: Crumbl has sued look-alike competitors (including Dirty Dough and Crave) over trade dress — packaging, box design, presentation style. Use these companies as blueprints for mechanics and unit economics, but build distinct names, colors, packaging, and recipes.
@@ -183,3 +217,21 @@ Business *models* — rotating menus, franchising, drops, late-night delivery �
 - [Dubai chocolate chewy cookies go viral in South Korea (Gulf News)](https://gulfnews.com/food/dubai-chocolate-chewy-cookies-go-viral-in-south-korea-1.500410779)
 - [Korean Dubai chewy cookie arrives in Hong Kong (Little Steps Asia)](https://www.littlestepsasia.com/hong-kong/dine/cafes-and-coffee-shops/korean-chewy-dubai-cookie/)
 - [Global cookies market size & forecast (Mordor Intelligence)](https://www.mordorintelligence.com/industry-reports/cookies-market)
+
+### Hospital & medical-diet niche
+
+- [Spoonful of Comfort — get-well packages & corporate gifting](https://www.spoonfulofcomfort.com/)
+- [ChipMonk Baking origin story — diabetes-friendly cookies](https://chipmonkbaking.com/pages/our-story)
+- [Neutropenic diet guidance (Memorial Sloan Kettering)](https://www.mskcc.org/experience/patient-support/nutrition-cancer/diet-plans-cancer/neutropenic-diet)
+- [Neutropenic diets: what cancer patients should know (MD Anderson)](https://www.mdanderson.org/cancerwise/neutropenic-diets--what-cancer-patients-should-know.h00-159542112.html)
+- [Foods that ease cancer-related nausea, incl. ginger cookies (Dana-Farber)](https://blog.dana-farber.org/insight/2013/11/foods-that-help-ease-cancer-related-nausea/)
+- [Tricks for chemo taste changes — lemon, maple, plastic forks (Fred Hutch)](https://www.fredhutch.org/en/news/center-news/2015/07/tricks-to-deal-with-cancer-treatment-side-effects.html)
+- [What to eat with chemo mouth & nausea (City of Hope)](https://www.cityofhope.org/hope-matters-blog/what-to-eat-when-nauseous-mucositis-bitterness)
+- [Ginger eases chemo nausea — clinical study (NBC News)](https://www.nbcnews.com/health/health-news/ginger-helps-ease-nausea-chemo-patients-flna1C9453677)
+- [Savorease — IDDSI-compliant meltable snacks for dysphagia](https://savorease.com/)
+- [Dysphagia food innovation gaps (FoodNavigator)](https://www.foodnavigator.com/Article/2026/05/19/empathy-and-food-safety-gaps-hinder-dysphagia-innovation/)
+- [Japan's senior food market & Universal Design Foods (IGNITE)](https://igni7e.com/blog/elderly-food-consumption-trends-in-japan/)
+- [Kidney-friendly snacks guidance (DaVita)](https://davita.com/diet-nutrition/articles/snacks-for-a-kidney-diet/)
+- [Kidney-friendly cookies: what to look for (Kidney Foodie)](https://kidneyfoodie.com/kidney-friendly-cookies/)
+- [Renal-friendly grab-and-go snacks (Magic Kitchen)](https://www.magickitchen.com/info/10-Grab-and-Go-Renal-Friendly-Snacks.html)
+- [Individually wrapped medical-themed cookie tins (Apple Cookie & Chocolate Co.)](https://www.applecookies.com/emergency-medical-service/medical-cookie-gift-tin/)

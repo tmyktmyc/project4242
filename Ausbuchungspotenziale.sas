@@ -337,3 +337,102 @@ PROC EXPORT DATA= aus_all
 	newfile=Y;
 RUN;
 */
+
+/**********************************************************************/
+/* Bereinigung der Liste aus_all gemaess Auswahl-Kriterien (Excel)    */
+/*                                                                    */
+/*  orange States : komplette KV entfernen                            */
+/*  gelbe States  : nur das betroffene Konto entfernen                */
+/*  N42 (gruen)   : bleibt komplett in der Liste                      */
+/*  andere Nxx    : settled / Alter > 79 / Betreuung -> entfernen,    */
+/*                  ausser Grund = Unterlagen oder Zinsen (bleiben)   */
+/*  W25/W26       : nur Blacklist "10 Small Balance" bleibt,          */
+/*                  sonst Konto entfernen                             */
+/*  alle uebrigen States: unveraendert                                */
+/**********************************************************************/
+
+/* Hinweis: E39 ist orange. Die ueber aus4 (Fraud, E38/E39) in die Liste
+   gelangten E39-Konten fallen dadurch inkl. ihrer kompletten KV wieder
+   raus - als Fraud-Potenzial verbleibt faktisch nur E38. Ist so gewollt. */
+
+/* KVs mit mindestens einem Konto in einem orangen State ermitteln.
+   Gesucht wird im gesamten Portfolio (Konten2), nicht nur in aus_all:
+   auch wenn das orange Konto selbst nicht in der Liste steht, wird
+   die komplette KV entfernt. */
+proc sql;
+	create table KV_orange as
+	select distinct KV_ID
+	from Konten2
+	where (substr(State,1,1) in ("A","V") /* alle A- und V-States */
+	   or State in ("B61","B62","B63","B65","B77","B96","B97",
+	                "E39","E41","E42","E43","E51",
+	                "K51","K52",
+	                "L24","L31","L32","L33",
+	                "U60","U61",
+	                "W05","W06","W41","W47","W48","W96",
+	                "Y40"))
+	  and not missing(KV_ID);
+quit;
+
+/* Orange-Kennzeichen an aus_all anspielen */
+proc sql;
+	create table aus_all_check as
+	select a.*,
+	       case when b.KV_ID is not null then 1 else 0 end as KV_orange_flag
+	from aus_all as a
+	left join KV_orange as b
+	on a.KV_ID = b.KV_ID;
+quit;
+
+/* Regeln anwenden:
+   aus_all_final    = bereinigte Liste
+   aus_all_entfernt = entfernte Zeilen inkl. Entfernungsgrund (Kontrolle) */
+data aus_all_final aus_all_entfernt;
+set aus_all_check;
+format Entfernungsgrund $40.;
+Entfernungsgrund = "";
+
+/* 1) orange: komplette KV raus - hat Vorrang vor allem anderen,
+      auch vor N42 und W25/26 Small Balance */
+if KV_orange_flag = 1 then Entfernungsgrund = "oranger State in KV";
+
+/* 2) gelbe States: nur dieses Konto raus, Rest der KV bleibt */
+else if State in ("B60" "E60" "W60" "W62") then Entfernungsgrund = "gelber State";
+
+/* 3) W25/W26: nur Blacklist = "10 Small Balance" bleibt in der Liste
+      (wird spaeter ausgebucht), sonst Konto entfernen */
+else if State in ("W25" "W26") then do;
+	if index(upcase(Blacklist),"SMALL BALANCE") = 0 then Entfernungsgrund = "W25/26 ohne Small Balance";
+end;
+
+/* 4) andere N-States (ausser N42): settled, Alter > 79 oder Betreuung
+      (einer der beiden Kunden) -> nicht ausbuchen -> entfernen;
+      Zeilen mit Grund = Unterlagen oder Zinsen bleiben (nichts machen) */
+else if substr(State,1,1) = "N" and State ne "N42" then do;
+	if (Settled_kn1 = "ja" or Settled_kn2 = "ja"
+	    or Alter > 79
+	    or V_CUST_UNDER_CUSTODIAN_FLG = "Y" or V_CUST_UNDER_CUSTODIAN_FLG2 = "Y")
+	   and Grund not in ("Unterlagen" "Zinsen")
+	then Entfernungsgrund = "Nxx settled/Alter/Betreuung";
+end;
+
+/* N42 (gruen) und alle nicht aufgefuehrten States bleiben unveraendert */
+
+drop KV_orange_flag;
+
+if Entfernungsgrund = "" then output aus_all_final;
+else output aus_all_entfernt;
+run;
+
+/* Kontrolle: entfernte Zeilen nach Entfernungsgrund und Grund */
+proc freq data=aus_all_entfernt;
+	tables Entfernungsgrund Entfernungsgrund*Grund / missing;
+run;
+
+/*
+PROC EXPORT DATA= aus_all_final
+	OUTFILE= "/home/ldap/&sysuserid./grpfpu/LAUBINKA/Data/Ausbuchungspotenziale_bereinigt_072026.xlsx"
+	DBMS=XLSX REPLACE;
+	newfile=Y;
+RUN;
+*/

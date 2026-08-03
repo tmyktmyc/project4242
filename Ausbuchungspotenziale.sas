@@ -261,4 +261,79 @@ run;
 /* Compliance */
 data aus5;
 set Konten2;
-/* ... Fortsetzung folgt (weitere Fotos ab Zeile 263) ... */
+Grund = "Compliance";
+if State in ("E32");
+if Buchwert = 0;
+if KV_lastpay lt "01JUL2025"d;
+run;
+
+/* Betreuung */
+data aus6;
+set Konten2;
+Grund = "Betreuung";
+if V_CUST_UNDER_CUSTODIAN_FLG = "Y" and V_CUST_UNDER_CUSTODIAN_FLG2 ne "N";
+if Buchwert = 0;
+if KV_lastpay lt "01JUL2025"d;
+run;
+
+/* falsch tituliert */
+data aus7;
+set Konten2;
+Grund = "wrong Title";
+if State in ("B33" "B34" "E98");
+if Buchwert = 0;
+if KV_lastpay lt "01JUL2025"d;
+run;
+
+/* Recall */
+data aus8;
+set Konten2;
+Grund = "Recall";
+if State in ("W25" "W26");
+if Buchwert = 0;
+if KV_lastpay lt "01JUL2025"d;
+run;
+
+/* FordKto */
+data aus9;
+set Konten2;
+Grund = "FordKto";
+if TTCC_DATE - OPEN_DATE lt 30;
+if State ne "";
+if Exclude_Final lt 201;
+if Buchwert = 0;
+if KV_lastpay lt "01JUL2025"d;
+run;
+
+/* Unterlagen fehlen */
+data aus10;
+set Konten2;
+Grund = "Unterlagen";
+if OPEN_DATE lt "01JAN2010"d;
+if State ne "";
+if CARD_NBR ne "";
+if Buchwert = 0;
+if KV_lastpay lt "01JUL2025"d;
+run;
+
+/* Datenzusammenfügen und exportieren */
+data aus_all;
+set aus1
+	aus2
+	aus3
+	aus4
+	aus5
+	aus6
+	aus7
+	aus8
+	aus9
+	aus10;
+if State ne "";
+run;
+/*
+PROC EXPORT DATA= aus_all
+	OUTFILE= "/home/ldap/&sysuserid./grpfpu/LAUBINKA/Data/Ausbuchungspotenziale_072026.xlsx"
+	DBMS=XLSX REPLACE;
+	newfile=Y;
+RUN;
+*/

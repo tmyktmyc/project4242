@@ -429,8 +429,26 @@ proc freq data=aus_all_entfernt;
 	tables Entfernungsgrund Entfernungsgrund*Grund / missing;
 run;
 
+/* Blacklist: alle nicht-blauen Blacklist-Werte entfernen.
+   Vergleich ueber den Code am Anfang des Wertes (1. Wort),
+   damit die abgeschnittenen Bezeichnungen egal sind */
+data aus_all_final2 aus_entfernt_bl;
+set aus_all_final;
+if scan(Blacklist,1," ") in ("3" "5" "20" "201" "202" "203" "204"
+                             "205" "206" "207" "210" "211" "999") then do;
+	Entfernungsgrund = "Blacklist nicht blau";
+	output aus_entfernt_bl;
+end;
+else output aus_all_final2;
+run;
+
+/* Kontrolle: welche Blacklist-Werte wurden entfernt */
+proc freq data=aus_entfernt_bl;
+	tables Blacklist / missing;
+run;
+
 /*
-PROC EXPORT DATA= aus_all_final
+PROC EXPORT DATA= aus_all_final2
 	OUTFILE= "/home/ldap/&sysuserid./grpfpu/LAUBINKA/Data/Ausbuchungspotenziale_bereinigt_072026.xlsx"
 	DBMS=XLSX REPLACE;
 	newfile=Y;

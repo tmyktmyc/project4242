@@ -363,7 +363,7 @@ proc sql;
 	create table KV_orange as
 	select distinct KV_ID
 	from Konten2
-	where (substr(State,1,1) in ("A","V") /* alle A- und V-States */
+	where (LOC in ("A","V") /* alle A- und V-States, LOC = 1. Stelle von State (aus ext) */
 	   or State in ("B61","B62","B63","B65","B77","B96","B97",
 	                "E39","E41","E42","E43","E51",
 	                "K51","K52",
@@ -408,7 +408,7 @@ end;
 /* 4) andere N-States (ausser N42): settled, Alter > 79 oder Betreuung
       (einer der beiden Kunden) -> nicht ausbuchen -> entfernen;
       Zeilen mit Grund = Unterlagen oder Zinsen bleiben (nichts machen) */
-else if substr(State,1,1) = "N" and State ne "N42" then do;
+else if LOC = "N" and State ne "N42" then do;
 	if (Settled_kn1 = "ja" or Settled_kn2 = "ja"
 	    or Alter > 79
 	    or V_CUST_UNDER_CUSTODIAN_FLG = "Y" or V_CUST_UNDER_CUSTODIAN_FLG2 = "Y")

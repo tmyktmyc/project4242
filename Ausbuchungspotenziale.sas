@@ -392,6 +392,11 @@ set aus_all_check;
 format Entfernungsgrund $40.;
 Entfernungsgrund = "";
 
+/* Blacklist: Code (Exclude_Final) + Beschreibung (Exclusion) kombiniert,
+   wie die Blacklist-Spalte im Excel, z.B. "119 Legal Estate" */
+length Blacklist $ 80;
+Blacklist = catx(" ", Exclude_Final, Exclusion);
+
 /* 1) orange: komplette KV raus - hat Vorrang vor allem anderen,
       auch vor N42 und W25/26 Small Balance */
 if KV_orange_flag = 1 then Entfernungsgrund = "oranger State in KV";
@@ -399,10 +404,10 @@ if KV_orange_flag = 1 then Entfernungsgrund = "oranger State in KV";
 /* 2) gelbe States: nur dieses Konto raus, Rest der KV bleibt */
 else if State in ("B60" "E60" "W60" "W62") then Entfernungsgrund = "gelber State";
 
-/* 3) W25/W26: nur Blacklist = "10 Small Balance" bleibt in der Liste
+/* 3) W25/W26: nur Blacklist-Code 10 (Small Balance) bleibt in der Liste
       (wird spaeter ausgebucht), sonst Konto entfernen */
 else if State in ("W25" "W26") then do;
-	if index(upcase(Blacklist),"SMALL BALANCE") = 0 then Entfernungsgrund = "W25/26 ohne Small Balance";
+	if Exclude_Final ne 10 then Entfernungsgrund = "W25/26 ohne Small Balance";
 end;
 
 /* 4) andere N-States (ausser N42): settled, Alter > 79 oder Betreuung
@@ -429,13 +434,12 @@ proc freq data=aus_all_entfernt;
 	tables Entfernungsgrund Entfernungsgrund*Grund / missing;
 run;
 
-/* Blacklist: alle nicht-blauen Blacklist-Werte entfernen.
-   Vergleich ueber den Code am Anfang des Wertes (1. Wort),
-   damit die abgeschnittenen Bezeichnungen egal sind */
+/* Blacklist: alle nicht-blauen Blacklist-Werte entfernen
+   (numerischer Code in Exclude_Final) */
 data aus_all_final2 aus_entfernt_bl;
 set aus_all_final;
-if scan(Blacklist,1," ") in ("3" "5" "20" "201" "202" "203" "204"
-                             "205" "206" "207" "210" "211" "999") then do;
+if Exclude_Final in (3, 5, 20, 201, 202, 203, 204,
+                     205, 206, 207, 210, 211, 999) then do;
 	Entfernungsgrund = "Blacklist nicht blau";
 	output aus_entfernt_bl;
 end;
@@ -447,8 +451,24 @@ proc freq data=aus_entfernt_bl;
 	tables Blacklist / missing;
 run;
 
+/* Gelbe States wieder aufnehmen, wenn die KV mit mindestens einem
+   Konto in der finalen Auswahl (aus_all_final2) vertreten ist */
+proc sql;
+	create table gelb_zurueck as
+	select a.*
+	from aus_all_entfernt as a
+	where a.State in ("B60","E60","W60","W62")
+	  and not missing(a.KV_ID)
+	  and a.KV_ID in (select KV_ID from aus_all_final2);
+quit;
+
+data aus_export;
+set aus_all_final2 (in=final) gelb_zurueck (in=gelb);
+if gelb then Entfernungsgrund = "Gelber State - wieder aufgenommen";
+run;
+
 /*
-PROC EXPORT DATA= aus_all_final2
+PROC EXPORT DATA= aus_export
 	OUTFILE= "/home/ldap/&sysuserid./grpfpu/LAUBINKA/Data/Ausbuchungspotenziale_bereinigt_072026.xlsx"
 	DBMS=XLSX REPLACE;
 	newfile=Y;
